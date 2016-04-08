@@ -5,4 +5,4 @@
 [Pp]lugins/remote_ios.json
 [Pp]latforms/
 
-www/src/Factory/KeyFactory.js
+#www/src/Factory/KeyFactory.js

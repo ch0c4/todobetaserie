@@ -1,14 +1,15 @@
 'use strict'
 
-app.factory('Auth', function($http, $q, Util) {
+app.factory('Auth', function($http, $q, Util, Key) {
 
 	var user = false;
 	var url = 'https://api.betaseries.com/members/auth';
+	var key = Key.getKey();
 
 	return {
 		login : function(d) {
 
-			var urlRequest = url + '?login=' + d.login + '&password=' + md5(d.password) + '&key=' + Util.getKey();
+			var urlRequest = url + '?login=' + d.login + '&password=' + md5(d.password) + '&key=' + key;
 			return $q(function(resolve, reject) {
 				$http.post(urlRequest).then(function(data) {
 					var result = {
