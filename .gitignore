@@ -4,5 +4,6 @@
 [Pp]lugins/wp8.json
 [Pp]lugins/remote_ios.json
 [Pp]latforms/
+bin/
 
 #www/src/Factory/KeyFactory.js
