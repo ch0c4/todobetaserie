@@ -11,5 +11,11 @@ app.factory('Util', function() {
 		});
 	};
 
+	Util.activateNavBar = function (elmName) {
+	    $(function () {
+	        $(elmName).sideNav();
+	    });
+	}
+
 	return Util;
 })

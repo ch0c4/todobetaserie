@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('HomeController', function($scope, $route, $timeout, Util, Auth, BetaSerie) {
+app.controller('HomeController', function($scope, $location, $timeout, Util, Auth, BetaSerie) {
 	
 	$scope.loading = true;
 	var getList = function() {
@@ -24,9 +24,10 @@ app.controller('HomeController', function($scope, $route, $timeout, Util, Auth, 
 		}, function(reason) {
 			Util.makeAToast(reason);
 		});
-
 	}
 
 	getList();
+
+	Util.activateNavBar('.button-collapse');
 
 });

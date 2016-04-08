@@ -8,27 +8,28 @@ app.factory('Auth', function($http, $q, Util, Key) {
 
 	return {
 		login : function(d) {
-
-			var urlRequest = url + '?login=' + d.login + '&password=' + md5(d.password) + '&key=' + key;
+		    var urlRequest = url + '?login=' + d.login + '&password=' + md5(d.password) + '&key=' + key;
 			return $q(function(resolve, reject) {
-				$http.post(urlRequest).then(function(data) {
+			    $http.post(urlRequest).then(function (data) {
 					var result = {
 						token : data.data.token,
 						id : data.data.user.id,
 						login : data.data.user.login
 					};
+					console.log(result);
 					resolve(result);
 				
-				}, function (data) {
+			    }, function (data) {
+			        console.log(data);
 					var message = data.statusText + ' : ' + data.data.errors[0].text;
 					reject(message);
 				});
 			});
 		},
-		setUser : function(aUser) {
+		setUser: function (aUser) {
 			user = aUser;
 		},
-		getUser : function() {
+		getUser: function () {
 			return user;
 		},
 		isLoggedIn : function() {

@@ -3,14 +3,14 @@
 app.factory('BetaSerie', function($http, $q, Auth, Util, Key) {
 
 	var BetaSerie = {};
-	var user = Auth.getUser();
 	var key = Key.getKey();
 
-	BetaSerie.getList = function() {
+	BetaSerie.getList = function () {
+	    var user = Auth.getUser();
 		var token = user.token;
-		var urlRequest = 'https://api.betaseries.com/episodes/list?token='+ token +'&key='+ key;
+		var urlRequest = 'https://api.betaseries.com/episodes/list?token=' + token + '&key=' + key;
 		return $q(function(resolve, reject) {
-			$http.get(urlRequest).then(function(data) {
+		    $http.get(urlRequest).then(function (data) {
 				var shows = data.data.shows;
 				var retVals = [];
 				for(var id in shows) {
@@ -33,17 +33,32 @@ app.factory('BetaSerie', function($http, $q, Auth, Util, Key) {
 		})
 	};
 
-	BetaSerie.watched = function(id) {
-		var token = user.token;
-		var urlRequest = 'https://api.betaseries.com/episodes/watched?id=' + id + '&token=' + token + '&key=' + key;
-		return $q(function(resolve, reject) {
-			$http.post(urlRequest).then(function(data) {
-				resolve(data);
-			}, function(data) {
-				var message = data.statusText + ' : ' + data.data.errors[0].text;
-				reject(message);
-			});
-		});
+	BetaSerie.watched = function (id) {
+	    var user = Auth.getUser();
+	    var token = user.token;
+	    var urlRequest = 'https://api.betaseries.com/episodes/watched?id=' + id + '&token=' + token + '&key=' + key;
+	    return $q(function (resolve, reject) {
+	        $http.post(urlRequest).then(function (data) {
+	            resolve(data);
+	        }, function (data) {
+	            var message = data.statusText + ' : ' + data.data.errors[0].text;
+	            reject(message);
+	        });
+	    });
+	};
+
+	BetaSerie.doSearch = function (term) {
+	    var user = Auth.getUser();
+	    var token = user.token;
+	    var urlRequest = 'https://api.betaseries.com/shows/search?title=' + term + '&token=' + token + '&key=' + key;
+	    return $q(function (resolve, reject) {
+	        $http.get(urlRequest).then(function (data) {
+	            resolve(data);
+	        }, function (data) {
+	            var message = data.statusText + ' : ' + data.data.errors[0].text;
+	            reject(message);
+	        });
+	    });
 	}
 
 	return BetaSerie;

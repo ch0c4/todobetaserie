@@ -10,7 +10,8 @@ app.controller('LoginController', function($scope, $location, Auth, Util) {
 	    };
 
 	    var promise = Auth.login(user);
-	    promise.then(function(user) {
+	    promise.then(function (user) {
+	        console.log(user);
 	    	Auth.setUser(user);
 	    	$location.path('/home');
 	    }, function(reason) {

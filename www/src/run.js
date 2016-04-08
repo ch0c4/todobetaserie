@@ -7,7 +7,7 @@ app.run(function($rootScope, $location, Auth) {
 		if(!Auth.isLoggedIn()) {
 			$location.path('/login');
 		} else {
-			$location.path('/home');
+		    $location.path($location.path());
 		}
 
 	});

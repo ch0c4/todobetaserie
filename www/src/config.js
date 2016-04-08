@@ -15,6 +15,10 @@ app.config(function($routeProvider, $locationProvider) {
 			templateUrl : 'src/Template/login.html',
 			controller : 'LoginController'
 		})
+        .when('/search', {
+            templateUrl: 'src/Template/search.html',
+            controller: 'SearchController'
+        })
 		.otherwise({
 	       redirectTo: '/login'
 	    });

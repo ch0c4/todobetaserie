@@ -3,14 +3,11 @@
 app.factory('Key', function () {
 
     var Key = {};
-    var apiKey = '******';
+    var apiKey = "*****";
 
     Key.getKey = function () {
         return apiKey;
     }
 
     return Key;
-
-
-
 });
