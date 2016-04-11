@@ -51,8 +51,10 @@ app.factory('BetaSerie', function($http, $q, Auth, Util, Key) {
 	    var user = Auth.getUser();
 	    var token = user.token;
 	    var urlRequest = 'https://api.betaseries.com/shows/search?title=' + term + '&token=' + token + '&key=' + key;
+	    console.log(urlRequest);
 	    return $q(function (resolve, reject) {
 	        $http.get(urlRequest).then(function (data) {
+	            console.log(data);
 	            resolve(data);
 	        }, function (data) {
 	            var message = data.statusText + ' : ' + data.data.errors[0].text;

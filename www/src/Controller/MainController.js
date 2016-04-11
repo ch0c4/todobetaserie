@@ -1,12 +1,8 @@
 ﻿'use strict'
 
-app.controller('MainController', function ($scope, $location, Search) {
-    $scope.isLogin = function () {
-        if ($location.path() === '/login') {
-            return true;
-        }
-        return false;
-    }
+app.controller('MainController', function ($scope, $rootScope, $location, Search) {
+
+    
 
     $scope.queryChange = function () {
         if ($scope.searchQuery === "") {

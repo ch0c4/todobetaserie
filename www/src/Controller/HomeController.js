@@ -1,28 +1,32 @@
 'use strict'
 
-app.controller('HomeController', function($scope, $location, $timeout, Util, Auth, BetaSerie) {
+app.controller('HomeController', function($scope, $rootScope, $location, $timeout, Util, Auth, BetaSerie) {
 	
-	$scope.loading = true;
+    $scope.loading = true;
+    $rootScope.displaySearch = false;
 	var getList = function() {
-		$scope.loading = true;
+	    $scope.loading = true;
+	    $rootScope.displaySearch = false;
 		var promise = BetaSerie.getList();
 		promise.then(function(shows) {
 			$scope.shows = shows;
 			$scope.loading = false;
+			$rootScope.displaySearch = true;
 		}, function(reason) {
 			Util.makeAToast(reason);
 		});
 	};
 	
-	$scope.watched = function(id) {
-		var p = BetaSerie.watched(id);
+	$scope.watched = function (id) {
+	    var p = BetaSerie.watched(id);
 		p.then(function(result) {
-			$scope.loading = true;
+		    $scope.loading = true;
+		    $rootScope.displaySearch = false;
 			$timeout(function() {
-				getList();
+			    getList();
 			}, 3000);
 		}, function(reason) {
-			Util.makeAToast(reason);
+		    Util.makeAToast(reason);
 		});
 	}
 

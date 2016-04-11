@@ -16,7 +16,6 @@ app.factory('Auth', function($http, $q, Util, Key) {
 						id : data.data.user.id,
 						login : data.data.user.login
 					};
-					console.log(result);
 					resolve(result);
 				
 			    }, function (data) {
