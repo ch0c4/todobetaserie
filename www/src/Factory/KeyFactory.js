@@ -3,7 +3,7 @@
 app.factory('Key', function () {
 
     var Key = {};
-    var apiKey = "c0a7b7f6d3e3";
+    var apiKey = "azeqsd";
 
     Key.getKey = function () {
         return apiKey;
